@@ -1,0 +1,15 @@
+.App {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .App-header {
+
+  }
+  .App-content {
+    flex: 1;
+  }
+  .App-footer {
+  }
+}
