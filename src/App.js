@@ -6,6 +6,8 @@ import Home from "./components/Page/Home";
 import Topics from "./components/Topics/Topics";
 import Login from "./components/Login/Login";
 
+import './mock/Topic';
+
 import './App.less';
 
 const Page = () => (
