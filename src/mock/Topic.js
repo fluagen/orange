@@ -1,30 +1,21 @@
-import Mock from 'fetch-mock';
+import Mock from "fetch-mock";
 
-const topics = [];
+const topics = [
+  {
+    topic: {
+      _id: "5989d572f634272f0547fbb1",
+      title: "1313"
+    },
+    author: {
 
-topics.push({
-  id: '1213',
-  title: '想问一下小米发布的 15 寸 pro 怎么样？',
-  author: {
-    avatar_url: '',
-    name: 'zhangsan'
+      avatar_url:
+        "//v2ex.assets.uxengine.net/avatar/05e1/0e4e/181515_large.png?m=1470621029"
+    },
+    reply: {
+      _id: "5989d572f634272f0547fbb1",
+      create_at: "2017-08-08T15:14:58.400Z"
+    }
   }
-});
-topics.push({
-  id: '4444',
-  title: '关于安卓抓包',
-  author: {
-    avatar_url: '',
-    name: 'zhangsan'
-  }
-});
-topics.push({
-  id: '555',
-  title: 'js 党可以吐槽一下 Python 吗',
-  author: {
-    avatar_url: '',
-    name: 'zhangsan'
-  }
-});
+];
 
 Mock.get("/api/topics", topics);

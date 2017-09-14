@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { Row, Col } from "antd";
+import Moment from 'react-moment';
 import "whatwg-fetch";
+import 'moment/locale/zh-cn';
 
 import About from "../Aside/About";
+import TopicItem from "./TopicItem";
 
 import "../style/list-group.less";
 
@@ -47,17 +50,19 @@ class Topics extends Component {
     return (
       <div>
         <Row>
-          <Col sm={2} md={4} lg={4} />
-          <Col sm={20} md={16} lg={16}>
+          <Col sm={2} md={2} lg={2} />
+          <Col sm={20} md={20} lg={20}>
             <div>
               <Row gutter={16}>
                 <Col span={18}>
                   <div className="list-group">
-                    <div className="list-group-item">topic</div>
-                    {data.map(topic => {
-                      return <div key={topic.id} className="list-group-item"> {topic.title} </div>;
+                    <div className="list-group-item">aaa</div>
+                    {data.map(item => {
+                      return <TopicItem key={item.topic._id} author={item.author} reply={item.reply} topic={item.topic} />;
                     })}
+
                   </div>
+
                 </Col>
                 <Col span={6}>
                   <About />
@@ -65,7 +70,7 @@ class Topics extends Component {
               </Row>
             </div>
           </Col>
-          <Col sm={2} md={4} lg={4} />
+          <Col sm={2} md={2} lg={2} />
         </Row>
       </div>
     );
