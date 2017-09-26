@@ -58,7 +58,7 @@ class Topics extends Component {
                   <div className="list-group">
                     <div className="list-group-item">aaa</div>
                     {data.map(item => {
-                      return <TopicItem key={item.topic._id} author={item.author} reply={item.reply} topic={item.topic} />;
+                      return <div className="list-group-item"><TopicItem key={item.topic._id} author={item.author} reply={item.reply} topic={item.topic} /></div>;
                     })}
 
                   </div>
