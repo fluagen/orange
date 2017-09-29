@@ -1,23 +1,29 @@
 import React, { Component } from "react";
 import Moment from "react-moment";
-import './TopicItem.less'
+import "moment/locale/zh-cn";
+
+import "./TopicItem.less";
 
 class TopicItem extends Component {
   render() {
-    const author = this.props.author;
     const topic = this.props.topic;
-    const reply = this.props.reply;
+    const lastReply = this.props.lastReply;
     return (
       <div id={topic._id} className="topicitem">
         <div className="avatar">
-          <img src={author.avatar_url} />
+          <img src={topic.author.avatar_url} />
         </div>
         <div className="topic-info">
-          {topic.title}
+          <div className="topic-title">{topic.title}</div>
+          <div className="topic-meta">
+            <a href={"/go/"+topic.group.id}>{topic.group.name}</a>
+            <span>&nbsp;•&nbsp;</span>
+            <a href="#">{topic.author.loginId}</a>
+            <span>&nbsp;•&nbsp;</span>
+            最后由&nbsp;<a href="#">{lastReply.author.loginId}</a>&nbsp;<Moment locale="zh-cn" fromNow>{lastReply.create_at}</Moment>回复
+          </div>
         </div>
-        <div className="badge-reply-count">
-          123
-        </div>
+        <div className="badge-reply-count">123</div>
       </div>
     );
   }
