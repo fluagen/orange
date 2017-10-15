@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import { Row, Col, Menu, Button } from "antd";
 import { Link } from "react-router-dom";
 
-
 import "./Header.less";
 import "../style/container.less";
 
@@ -28,7 +27,9 @@ class Header extends Component {
                   </Menu>
                 </div>
                 <div className="page-header-btn">
-                  <Button size="large">注册</Button>
+                  <Button size="large">
+                    <Link to="/signup">注册</Link>
+                  </Button>
                   <Button size="large">
                     <Link to="/signin">登录</Link>
                   </Button>

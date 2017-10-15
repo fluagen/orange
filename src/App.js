@@ -5,6 +5,7 @@ import Footer from "./components/Page/Footer";
 import Home from "./components/Page/Home";
 import Topics from "./components/Topics/Topics";
 import Login from "./components/Login/Login";
+import Register from "./components/Login/Register";
 
 import './mock/Topic';
 
@@ -19,6 +20,7 @@ const Page = () => (
       <Route path="/" exact component={Home} />
       <Route path="/topics" component={Topics} />
       <Route path="/signin" component={Login} />
+      <Route path="/signup" component={Register} />
     </div>
     <div className="app-footer">
       <Footer />
