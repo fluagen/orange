@@ -1,36 +1,38 @@
 import React, { Component } from "react";
-import { Row, Col, Form, Input } from "antd";
+import { Row, Col } from "antd";
 
-import "../style/container.less";
-import "./Register.less";
+import RegisterForm from "./RegisterForm";
+import About from "../Aside/About";
 
-const FormItem = Form.Item;
+import "../style/list-group.less";
+import "./Login.less";
 
 class Register extends Component {
   render() {
-    const formItemLayout = {
-      labelCol: {
-        xs: { span: 24 },
-        md: { span: 10 }
-      },
-      wrapperCol: {
-        xs: { span: 24 },
-        md: { span: 6 }
-      }
-    };
     return (
-      <div className="container">
-        <Row gutter={16}>
-          <Col span={18}>
-            <div className="register">
-              <Form>
-                <FormItem {...formItemLayout} label="登录名">
-                  <Input />
-                </FormItem>
-              </Form>
+      <div>
+        <Row>
+          <Col sm={6} md={4} lg={4} />
+          <Col sm={12} md={16} lg={16}>
+            <div>
+              <Row gutter={16}>
+                <Col span={18}>
+                  <div className="list-group">
+                    <div className="list-group-item">登录</div>
+                    <div className="list-group-item">
+                      <div className="login">
+                        <RegisterForm />
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+                <Col span={6}>
+                  <About />
+                </Col>
+              </Row>
             </div>
           </Col>
-          <Col span={6}>aaa</Col>
+          <Col sm={6} md={4} lg={4} />
         </Row>
       </div>
     );
