@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 
-import './LoginForm.less';
+import "./Login.less";
 
 const FormItem = Form.Item;
 

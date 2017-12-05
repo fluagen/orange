@@ -14,7 +14,7 @@ import {
   AutoComplete
 } from "antd";
 
-import './RegisterForm.less';
+import "./Register.less";
 
 
 const FormItem = Form.Item;
@@ -60,22 +60,16 @@ class RegistrationForm extends React.Component {
 
     const formItemLayout = {
       labelCol: {
-        span: 10
+        span: 6
       },
       wrapperCol: {
-        span: 14
+        span: 16
       }
     };
     const tailFormItemLayout = {
       wrapperCol: {
-        xs: {
-          span: 24,
-          offset: 0
-        },
-        sm: {
-          span: 14,
-          offset: 6
-        }
+        span: 16,
+        offset: 6
       }
     };
 
@@ -144,7 +138,7 @@ class RegistrationForm extends React.Component {
         </FormItem>
         <FormItem {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
-            Register
+            注册
           </Button>
         </FormItem>
       </Form>

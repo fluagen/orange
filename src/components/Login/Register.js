@@ -4,35 +4,29 @@ import { Row, Col } from "antd";
 import RegisterForm from "./RegisterForm";
 import About from "../Aside/About";
 
+import "../style/container.less";
 import "../style/list-group.less";
-import "./Login.less";
+import "./Register.less";
 
 class Register extends Component {
   render() {
     return (
-      <div>
-        <Row>
-          <Col sm={6} md={4} lg={4} />
-          <Col sm={12} md={16} lg={16}>
-            <div>
-              <Row gutter={16}>
-                <Col span={18}>
-                  <div className="list-group">
-                    <div className="list-group-item">登录</div>
-                    <div className="list-group-item">
-                      <div className="login">
-                        <RegisterForm />
-                      </div>
-                    </div>
-                  </div>
-                </Col>
-                <Col span={6}>
-                  <About />
-                </Col>
-              </Row>
+      <div className="container">
+        <Row gutter={16}>
+          <Col span={2} />
+          <Col span={16}>
+            <div className="list-group">
+              <div className="list-group-item">注册</div>
+              <div className="list-group-item">
+                <div className="register">
+                  <RegisterForm />
+                </div>
+              </div>
             </div>
           </Col>
-          <Col sm={6} md={4} lg={4} />
+          <Col span={6}>
+            <About />
+          </Col>
         </Row>
       </div>
     );
