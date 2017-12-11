@@ -7,6 +7,7 @@ import "moment/locale/zh-cn";
 import About from "../Aside/About";
 import TopicItem from "./TopicItem";
 
+import "../style/main.less";
 import "../style/container.less";
 import "../style/list-group.less";
 

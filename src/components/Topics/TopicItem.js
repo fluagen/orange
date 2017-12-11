@@ -16,7 +16,7 @@ class TopicItem extends Component {
         <div className="topic-info">
           <div className="topic-title">{topic.title}</div>
           <div className="topic-meta">
-            <a href={"/go/"+topic.group.id}>{topic.group.name}</a>
+            <a className="node" href={"/go/"+topic.group.id}>{topic.group.name}</a>
             <span>&nbsp;•&nbsp;</span>
             <a href="#">{topic.author.loginId}</a>
             <span>&nbsp;•&nbsp;</span>
