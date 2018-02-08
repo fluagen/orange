@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Row, Col } from "antd";
 
 import About from "../Aside/About";
+import ButtonTopic from "../Aside/ButtonTopic";
 
 import '../style/list-group.less';
 
@@ -22,7 +23,7 @@ class Home extends Component {
                   </div>
                 </Col>
                 <Col span={6} >
-                  <About />
+                  <ButtonTopic />
                 </Col>
               </Row>
             </div>
