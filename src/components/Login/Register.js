@@ -8,17 +8,18 @@ import "../style/container.less";
 import "../style/list-group.less";
 import "./Register.less";
 
+import styles from './Register.module.scss';
+
 class Register extends Component {
   render() {
     return (
       <div className="container">
         <Row gutter={16}>
-          <Col span={2} />
-          <Col span={16}>
+          <Col span={18}>
             <div className="list-group">
               <div className="list-group-item">注册</div>
               <div className="list-group-item">
-                <div className="register">
+                <div className={styles.register}>
                   <RegisterForm />
                 </div>
               </div>

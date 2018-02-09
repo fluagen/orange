@@ -12,18 +12,20 @@ import './mock/Topic';
 import "./components/style/main.less";
 import './App.less';
 
+import styles from "./App.module.scss";
+
 const Page = () => (
-  <div className="app-main">
-    <div className="app-header">
+  <div className={styles.main}>
+    <div className={styles.header}>
       <Header />
     </div>
-    <div className="app-content">
+    <div className={styles.home}>
       <Route path="/" exact component={Home} />
       <Route path="/topics" component={Topics} />
       <Route path="/signin" component={Login} />
       <Route path="/signup" component={Register} />
     </div>
-    <div className="app-footer">
+    <div className={styles.footer}>
       <Footer />
     </div>
   </div>

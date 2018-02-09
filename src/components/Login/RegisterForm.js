@@ -14,7 +14,7 @@ import {
   AutoComplete
 } from "antd";
 
-import "./Register.less";
+import styles from './RegisterForm.module.scss';
 
 
 const FormItem = Form.Item;
@@ -63,18 +63,18 @@ class RegistrationForm extends React.Component {
         span: 6
       },
       wrapperCol: {
-        span: 16
+        span: 18
       }
     };
     const tailFormItemLayout = {
       wrapperCol: {
-        span: 16,
+        span: 18,
         offset: 6
       }
     };
 
     return (
-      <Form onSubmit={this.handleSubmit} className="register-form">
+      <Form onSubmit={this.handleSubmit} className={styles.main}>
         <FormItem {...formItemLayout} label="用户名" hasFeedback>
           {getFieldDecorator("loginid", {
             rules: [

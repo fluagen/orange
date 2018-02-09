@@ -8,17 +8,18 @@ import "../style/container.less";
 import "../style/list-group.less";
 import "./Login.less";
 
+import styles from './Login.module.scss'
+
 class Home extends Component {
   render() {
     return (
       <div className="container">
         <Row gutter={16}>
-          <Col span={2} />
-          <Col span={16}>
+          <Col span={18}>
             <div className="list-group">
               <div className="list-group-item">登录</div>
               <div className="list-group-item">
-                <div className="login">
+                <div className={styles.login}>
                   <LoginForm />
                 </div>
               </div>

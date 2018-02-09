@@ -3,6 +3,8 @@ import { Form, Icon, Input, Button, Checkbox } from 'antd';
 
 import "./Login.less";
 
+import styles from './LoginForm.module.scss';
+
 const FormItem = Form.Item;
 
 class LoginForm extends React.Component {
@@ -17,7 +19,7 @@ class LoginForm extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <Form onSubmit={this.handleSubmit} className="login-form">
+      <Form onSubmit={this.handleSubmit} className={styles.main}>
         <FormItem>
           {getFieldDecorator('userName', {
             rules: [{ required: true, message: '用户名不能为空!' }],
@@ -39,12 +41,16 @@ class LoginForm extends React.Component {
           })(
             <Checkbox>记住我</Checkbox>
           )}
-          <a className="login-form-forgot" href="">忘记密码</a>
-          <Button type="primary" htmlType="submit" className="login-form-button">
+          <a className={styles.forgot} href="">忘记密码</a>
+          <Button type="primary" htmlType="submit" className={styles.btn}>
             登录
           </Button>
         </FormItem>
+        <FormItem>
+
+        </FormItem>
       </Form>
+
     );
   }
 }

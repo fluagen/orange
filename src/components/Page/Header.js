@@ -1,37 +1,37 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import { Row, Col, Menu, Button } from "antd";
-import { Link } from "react-router-dom";
+import { Row, Col, Menu, Button } from 'antd';
+import { Link } from 'react-router-dom';
 
 import classNames from 'classnames';
-import styles from "./Header.module.scss";
+import styles from './Header.module.scss';
 
 class Header extends Component {
   render() {
     return (
       <div className={styles.main}>
         <div className="container">
-          <nav className={classNames("navbar navbar-expand-lg navbar-light bg-light", styles.navbar)}>
+          <nav className={classNames("navbar navbar-expand-lg navbar-light", styles.navbar)}>
             <a className="navbar-brand" href="#">
-              Navbar
+              OC
             </a>
-            <Menu mode="horizontal">
+            <Menu mode="horizontal" style={{ lineHeight: '49px', flex: 1 }}>
               <Menu.Item>
                 <Link to="/">社区</Link>
               </Menu.Item>
               <Menu.Item>
-                <Link to="/topics" />
+                <Link to="/topics">话题</Link>
               </Menu.Item>
-              <Menu.Item />
+              <Menu.Item>投票</Menu.Item>
             </Menu>
-
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">
-                  Home <span class="sr-only">(current)</span>
-                </a>
-              </li>
-            </ul>
+            <div className={styles.navbar_right}>
+              <Button size="large">
+                <Link to="/signup">注册</Link>
+              </Button>
+              <Button size="large">
+                <Link to="/signin">登录</Link>
+              </Button>
+            </div>
           </nav>
         </div>
       </div>
