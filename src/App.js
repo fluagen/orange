@@ -6,6 +6,7 @@ import Home from "./components/Page/Home";
 import Topics from "./components/Topics/Topics";
 import Login from "./components/Login/Login";
 import Register from "./components/Login/Register";
+import TopicEditor from "./components/Topics/TopicEditor";
 
 import './mock/Topic';
 
@@ -21,9 +22,10 @@ const Page = () => (
     </div>
     <div className={styles.home}>
       <Route path="/" exact component={Home} />
-      <Route path="/topics" component={Topics} />
       <Route path="/signin" component={Login} />
       <Route path="/signup" component={Register} />
+      <Route path="/topics" component={Topics} />
+      <Route path="/topic/create" component={TopicEditor} />
     </div>
     <div className={styles.footer}>
       <Footer />
