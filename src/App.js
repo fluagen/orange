@@ -26,6 +26,7 @@ const Page = () => (
       <Route path="/signup" component={Register} />
       <Route path="/topics" component={Topics} />
       <Route path="/topic/create" component={TopicEditor} />
+      <Route path="/topic/{tid}" component={Topics} />
     </div>
     <div className={styles.footer}>
       <Footer />
