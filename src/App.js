@@ -7,6 +7,7 @@ import Topics from "./components/Topics/Topics";
 import Login from "./components/Login/Login";
 import Register from "./components/Login/Register";
 import TopicEditor from "./components/Topics/TopicEditor";
+import Topic from "./components/Topics/Topic";
 
 import './mock/Topic';
 
@@ -26,7 +27,7 @@ const Page = () => (
       <Route path="/signup" component={Register} />
       <Route path="/topics" component={Topics} />
       <Route path="/topic/create" component={TopicEditor} />
-      <Route path="/topic/{tid}" component={Topics} />
+      <Route path="/topic/:tid" component={Topic} />
     </div>
     <div className={styles.footer}>
       <Footer />

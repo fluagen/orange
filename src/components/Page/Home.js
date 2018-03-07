@@ -14,8 +14,8 @@ class Home extends Component {
           <Row gutter={16}>
             <Col span={18}>
               <div className="list-group">
-                <div className="list-group-item">aaa</div>
-                <div className="list-group-item">bbb</div>
+                <div className="list-group-item"><a href="/topic/aaa">aaa</a></div>
+                <div className="list-group-item"><a href="/topic/bbb">bbb</a></div>
               </div>
             </Col>
             <Col span={6}>

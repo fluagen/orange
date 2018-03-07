@@ -14,7 +14,7 @@ class TopicItem extends Component {
           <img src={topic.author.avatar_url} />
         </div>
         <div className="topic-info">
-          <div className="topic-title">{topic.title}</div>
+          <div className="topic-title"><a href="/topic/{topic._id}">{topic.title}</a></div>
           <div className="topic-meta">
             <a className="node" href={"/go/"+topic.group.id}>{topic.group.name}</a>
             <span>&nbsp;•&nbsp;</span>
