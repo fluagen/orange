@@ -9,7 +9,7 @@ import Register from "./components/Login/Register";
 import TopicEditor from "./components/Topics/TopicEditor";
 import Topic from "./components/Topics/Topic";
 
-import './mock/Topic';
+// import './mock/Topic';
 
 import "./components/style/main.less";
 import './App.less';

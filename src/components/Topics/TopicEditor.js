@@ -7,6 +7,8 @@ import Warnings from '../Message/Warnings';
 import classNames from 'classnames';
 import styles from './TopicEditor.module.scss';
 
+import 'whatwg-fetch';
+
 const { TextArea } = Input;
 const md = new MarkdownIt();
 
@@ -36,6 +38,24 @@ class TopicEditor extends Component {
     });
   }
 
+
+checkStatus(response) {
+  if (response.status >= 200 && response.status < 300) {
+    return response
+  } else {
+    console.log('error:'+response.statusText);
+    var error = new Error(response.statusText)
+    error.response = response
+    throw error
+  }
+}
+
+parseJSON(response) {
+  return response.json()
+}
+
+
+
   handleSubmit(e) {
     e.preventDefault();
     let title = this.topicTitle.input.value;
@@ -50,7 +70,70 @@ class TopicEditor extends Component {
         messages: ['标题不能大于140个字符！']
       });
     }
-    //TODO 提交
+
+    fetch('http://localhost:3000/topic', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer 1eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJ6aGFuZ3NhbiIsImlhdCI6MTUxNzMyOTkxMX0.raLfL9XTIpJ9gkyabQ5PSWjsQeEwV4R9oENQ9_B841E'
+      },
+      body: JSON.stringify({
+        title: 'Hubot',
+        t_content: 'hubot'
+      })
+    })
+    .then(response => {
+  // response from server
+  // here you can check status of response and handle it manually
+  switch (response.status) {
+    case 500: console.error('Some server error'); break;
+    case 401: console.error('Unauthorized'); break;
+    // ...
+  }
+  // or you can check if status in the range 200 to 299
+  if (response.ok) {
+    return response;
+  } else {
+    // push error further for the next `catch`, like
+    return Promise.reject(response);
+    // or another way
+    throw Error(response.statusText);
+  }
+})
+.catch(error => {
+  // here you will get only Fetch API errors and those you threw or rejected above
+  // in most cases Fetch API error will look like common Error object
+  // {
+  //   name: "TypeError",
+  //   message: "Failed to fetch",
+  //   stack: ...
+  // }
+});
+
+
+    // //TODO 提交
+    // fetch('http://localhost:3000/topic', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'Authorization': 'Bearer 1eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJ6aGFuZ3NhbiIsImlhdCI6MTUxNzMyOTkxMX0.raLfL9XTIpJ9gkyabQ5PSWjsQeEwV4R9oENQ9_B841E'
+    //   },
+    //   body: JSON.stringify({
+    //     title: 'Hubot',
+    //     t_content: 'hubot'
+    //   })
+    // })
+    //   .then(function(response) {
+    //
+    //     if (response.status >= 200 && response.status < 300) {
+    //       return response
+    //     } else {
+    //       console.log(response.statusText);
+    //       var error = new Error(response.statusText)
+    //       error.response = response
+    //       throw error
+    //     }
+    //   });
   }
 
   render() {
