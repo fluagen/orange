@@ -1,16 +1,21 @@
-import React, { Component } from 'react';
-import { Row, Col, Input, Alert } from 'antd';
-import MarkdownIt from 'markdown-it';
-import About from '../Aside/About';
-import Warnings from '../Message/Warnings';
+import React, { Component } from "react";
+import { Row, Col, Input, Alert } from "antd";
+import { withRouter } from "react-router-dom";
+import MarkdownIt from "markdown-it";
+import About from "../Aside/About";
+import Warnings from "../Message/Warnings";
 
-import classNames from 'classnames';
-import styles from './TopicEditor.module.scss';
+import classNames from "classnames";
+import styles from "./TopicEditor.module.scss";
 
-import 'whatwg-fetch';
+import "whatwg-fetch";
 
 const { TextArea } = Input;
 const md = new MarkdownIt();
+
+const addTopicCB = function(){
+  withRouter(({ history }) => history.push("/"));
+}
 
 class TopicEditor extends Component {
   constructor(props) {
@@ -38,71 +43,60 @@ class TopicEditor extends Component {
     });
   }
 
-  checkStatus(response) {
-    if (response.status >= 200 && response.status < 300) {
-      return response;
-    } else {
-      console.log('error:' + response.statusText);
-      var error = new Error(response.statusText);
-      error.response = response;
-      throw error;
-    }
-  }
-
-  parseJSON(response) {
-    return response.json();
-  }
-
   handleSubmit(e) {
     e.preventDefault();
     let title = this.topicTitle.input.value;
-    if (!title || title === '') {
+    let t_content = this.topicContent.textAreaRef.value;
+    if (!title || title === "") {
       // this.state.messages.push('标题不能为空！');
       this.setState({
-        messages: ['标题不能为空！']
+        messages: ["标题不能为空！"]
       });
     } else if (title.length > 140) {
       // this.state.messages.push('标题不能大于140个字符!');
       this.setState({
-        messages: ['标题不能大于140个字符！']
+        messages: ["标题不能大于140个字符！"]
       });
     }
+    const token =
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJ6aGFuZ3NhbiIsImlhdCI6MTUxNzMyOTkxMX0.raLfL9XTIpJ9gkyabQ5PSWjsQeEwV4R9oENQ9_B841E";
 
-    fetch('http://localhost:3000/topic', {
-      method: 'POST',
+    //submit
+    fetch("http://localhost:3000/topic", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJ6aGFuZ3NhbiIsImlhdCI6MTUxNzMyOTkxMX0.raLfL9XTIpJ9gkyabQ5PSWjsQeEwV4R9oENQ9_B841E'
+        "Content-Type": "application/json",
+        Authorization: token
       },
       body: JSON.stringify({
-        title: 'Hubot',
-        t_content: 'hubot'
+        title: title,
+        t_content: t_content
       })
     })
       .then(response => {
         if (response.status === 401) {
-          alert('token不合法，或已过期！');
+          alert("token不合法，或已过期！");
           return;
         }
         if (response.ok) {
           return response.json();
         } else {
-          console.log('Some server error:' + response.statusText);
-          alert('Some server error');
+          console.log("Some server error:" + response.statusText);
         }
       })
-      .then(data => {
-        console.log('parsed json', data);
+      .then(rst => {
+        // TODO redirect
+        let data = rst.data;
+        this.props.history.push("/topic/"+data.tid);
       })
       .catch(e => {
-        console.log('parsing failed', e);
+        console.log("parsing failed", e);
       });
   }
 
   render() {
     return (
-      <div className={classNames('container', styles.main)}>
+      <div className={classNames("container", styles.main)}>
         <Row>
           <Col span={24}>
             <Warnings items={this.state.messages} />
@@ -120,7 +114,7 @@ class TopicEditor extends Component {
                 />
               </div>
               <div className="form-group">
-                <div style={{ display: this.state.isPreview ? 'none' : '' }}>
+                <div style={{ display: this.state.isPreview ? "none" : "" }}>
                   <TextArea
                     rows={10}
                     placeholder="请填写话题内容"
@@ -131,28 +125,28 @@ class TopicEditor extends Component {
                 </div>
                 <div
                   className={styles.previewBox}
-                  style={{ display: this.state.isPreview ? '' : 'none' }}
+                  style={{ display: this.state.isPreview ? "" : "none" }}
                   ref={input => {
                     this.previewInput = input;
                   }}
                 />
               </div>
               <div className="form-group">
-                <button className={classNames('btn btn-success')} type="submit">
+                <button className={classNames("btn btn-success")} type="submit">
                   发布
                 </button>
                 <button
-                  className={classNames('btn btn-success')}
+                  className={classNames("btn btn-success")}
                   type="button"
-                  style={{ display: this.state.isPreview ? '' : 'none' }}
+                  style={{ display: this.state.isPreview ? "" : "none" }}
                   onClick={this.editToggle}
                 >
                   编辑
                 </button>
                 <button
-                  className={classNames('btn btn-success')}
+                  className={classNames("btn btn-success")}
                   type="button"
-                  style={{ display: this.state.isPreview ? 'none' : '' }}
+                  style={{ display: this.state.isPreview ? "none" : "" }}
                   onClick={this.previewToggle}
                 >
                   预览
@@ -169,4 +163,4 @@ class TopicEditor extends Component {
   }
 }
 
-export default TopicEditor;
+export default withRouter(TopicEditor);
