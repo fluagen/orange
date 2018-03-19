@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import React, { Component } from "react";
+import { Form, Icon, Input, Button, Checkbox } from "antd";
+import { withRouter } from "react-router-dom";
+import { RequestPost } from "../Util/Request";
 
-import './Login.less';
+import "./Login.less";
 
-import styles from './LoginForm.module.scss';
+import styles from "./LoginForm.module.scss";
 
 const FormItem = Form.Item;
 
@@ -14,26 +16,16 @@ class LoginForm extends React.Component {
       if (err) {
         return;
       }
-      console.log('Received values of form: ', values);
-      //submit
-      fetch('http://localhost:3000/signin', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          loginid: 'zhangsan',
-          passwd: 'zhangsan'
-        })
-      })
-        .then(response => {
-          return response.json();
-        })
-        .then(rst => {
-          let data = rst.data;
-          localStorage.setItem('token', data.token);
-          console.log(rst);
-        });
+      console.log(values);
+      let body = JSON.stringify({
+        loginid: values.userName,
+        passwd: values.password
+      });
+      RequestPost("http://localhost:3000/signin", body, rst => {
+        let data = rst.data;
+        localStorage.setItem("token", data.token);
+        this.props.history.push("/");
+      });
     });
   };
   render() {
@@ -41,8 +33,8 @@ class LoginForm extends React.Component {
     return (
       <Form onSubmit={this.handleSubmit} className={styles.main}>
         <FormItem>
-          {getFieldDecorator('userName', {
-            rules: [{ required: true, message: '用户名不能为空!' }]
+          {getFieldDecorator("userName", {
+            rules: [{ required: true, message: "用户名不能为空!" }]
           })(
             <Input
               prefix={<Icon type="user" style={{ fontSize: 13 }} />}
@@ -51,8 +43,8 @@ class LoginForm extends React.Component {
           )}
         </FormItem>
         <FormItem>
-          {getFieldDecorator('password', {
-            rules: [{ required: true, message: '密码不能为空!' }]
+          {getFieldDecorator("password", {
+            rules: [{ required: true, message: "密码不能为空!" }]
           })(
             <Input
               prefix={<Icon type="lock" style={{ fontSize: 13 }} />}
@@ -62,8 +54,8 @@ class LoginForm extends React.Component {
           )}
         </FormItem>
         <FormItem>
-          {getFieldDecorator('remember', {
-            valuePropName: 'checked',
+          {getFieldDecorator("remember", {
+            valuePropName: "checked",
             initialValue: true
           })(<Checkbox>记住我</Checkbox>)}
           <a className={styles.forgot} href="">
@@ -81,4 +73,4 @@ class LoginForm extends React.Component {
 
 const WrappedLoginForm = Form.create()(LoginForm);
 
-export default WrappedLoginForm;
+export default withRouter(WrappedLoginForm);

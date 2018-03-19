@@ -45,7 +45,7 @@ class Topics extends Component {
   }
   componentDidMount() {
     fetch("/api/topics")
-      .then(r => r.json())
+      .then(r => {return r.json()})
       .then(rst => {
         this.setState({ data: rst });
         console.log(new Date() + rst);

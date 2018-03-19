@@ -9,6 +9,7 @@ import classNames from "classnames";
 import styles from "./TopicEditor.module.scss";
 
 import "whatwg-fetch";
+import { ReqPost } from "../Util/Request";
 
 const { TextArea } = Input;
 const md = new MarkdownIt();
@@ -29,7 +30,7 @@ class TopicEditor extends Component {
       isPreview: true
     });
 
-    let t_content = this.textInput.textAreaRef.value;
+    let t_content = this.topicContent.textAreaRef.value;
     this.previewInput.innerHTML = md.render(t_content);
   }
 
@@ -54,41 +55,21 @@ class TopicEditor extends Component {
         messages: ["标题不能大于140个字符！"]
       });
     }
-    const token = localStorage.getItem('token');
-    if(token === null || token === ''){
+    const token = localStorage.getItem("token");
+    if (token === null || token === "") {
       alert("token不合法！");
       return;
     }
 
+    let body = JSON.stringify({
+      title: title,
+      t_content: t_content
+    });
     //submit
-    fetch("http://localhost:3000/topic", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + token
-      },
-      body: JSON.stringify({
-        title: title,
-        t_content: t_content
-      })
-    })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        if (response.status === 401) {
-          alert("token不合法，或已过期！");
-          return;
-        }
-      })
-      .then(rst => {
-        // TODO redirect
-        let data = rst.data;
-        this.props.history.push("/topic/"+data.tid);
-      })
-      .catch(e => {
-        console.log("parsing failed", e);
-      });
+    ReqPost("http://localhost:3000/topic", token, body, rst => {
+      let data = rst.data;
+      this.props.history.push("/topic/" + data.tid);
+    });
   }
 
   render() {
