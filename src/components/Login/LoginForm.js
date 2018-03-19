@@ -1,56 +1,80 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 
-import "./Login.less";
+import './Login.less';
 
 import styles from './LoginForm.module.scss';
 
 const FormItem = Form.Item;
 
 class LoginForm extends React.Component {
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
+      if (err) {
+        return;
       }
+      console.log('Received values of form: ', values);
+      //submit
+      fetch('http://localhost:3000/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          loginid: 'zhangsan',
+          passwd: 'zhangsan'
+        })
+      })
+        .then(response => {
+          return response.json();
+        })
+        .then(rst => {
+          let data = rst.data;
+          localStorage.setItem('token', data.token);
+          console.log(rst);
+        });
     });
-  }
+  };
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
       <Form onSubmit={this.handleSubmit} className={styles.main}>
         <FormItem>
           {getFieldDecorator('userName', {
-            rules: [{ required: true, message: '用户名不能为空!' }],
+            rules: [{ required: true, message: '用户名不能为空!' }]
           })(
-            <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="用户名" />
+            <Input
+              prefix={<Icon type="user" style={{ fontSize: 13 }} />}
+              placeholder="用户名"
+            />
           )}
         </FormItem>
         <FormItem>
           {getFieldDecorator('password', {
-            rules: [{ required: true, message: '密码不能为空!' }],
+            rules: [{ required: true, message: '密码不能为空!' }]
           })(
-            <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="密码" />
+            <Input
+              prefix={<Icon type="lock" style={{ fontSize: 13 }} />}
+              type="password"
+              placeholder="密码"
+            />
           )}
         </FormItem>
         <FormItem>
           {getFieldDecorator('remember', {
             valuePropName: 'checked',
-            initialValue: true,
-          })(
-            <Checkbox>记住我</Checkbox>
-          )}
-          <a className={styles.forgot} href="">忘记密码</a>
+            initialValue: true
+          })(<Checkbox>记住我</Checkbox>)}
+          <a className={styles.forgot} href="">
+            忘记密码
+          </a>
           <Button type="primary" htmlType="submit" className={styles.btn}>
             登录
           </Button>
         </FormItem>
-        <FormItem>
-
-        </FormItem>
+        <FormItem />
       </Form>
-
     );
   }
 }

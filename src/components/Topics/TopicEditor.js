@@ -13,10 +13,6 @@ import "whatwg-fetch";
 const { TextArea } = Input;
 const md = new MarkdownIt();
 
-const addTopicCB = function(){
-  withRouter(({ history }) => history.push("/"));
-}
-
 class TopicEditor extends Component {
   constructor(props) {
     super(props);
@@ -58,15 +54,18 @@ class TopicEditor extends Component {
         messages: ["标题不能大于140个字符！"]
       });
     }
-    const token =
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJ6aGFuZ3NhbiIsImlhdCI6MTUxNzMyOTkxMX0.raLfL9XTIpJ9gkyabQ5PSWjsQeEwV4R9oENQ9_B841E";
+    const token = localStorage.getItem('token');
+    if(token === null || token === ''){
+      alert("token不合法！");
+      return;
+    }
 
     //submit
     fetch("http://localhost:3000/topic", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: token
+        "Authorization": "Bearer " + token
       },
       body: JSON.stringify({
         title: title,
@@ -74,14 +73,12 @@ class TopicEditor extends Component {
       })
     })
       .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
         if (response.status === 401) {
           alert("token不合法，或已过期！");
           return;
-        }
-        if (response.ok) {
-          return response.json();
-        } else {
-          console.log("Some server error:" + response.statusText);
         }
       })
       .then(rst => {
