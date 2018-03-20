@@ -1,12 +1,12 @@
-import "whatwg-fetch";
+import 'whatwg-fetch';
 
 const ReqPost = (url, token, body, callback) => {
   //submit
   fetch(url, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + token
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + token
     },
     body: body
   })
@@ -15,7 +15,7 @@ const ReqPost = (url, token, body, callback) => {
         return response.json();
       }
       if (response.status === 401) {
-        alert("token不合法，或已过期！");
+        alert('token不合法，或已过期！');
         return;
       }
     })
@@ -23,15 +23,15 @@ const ReqPost = (url, token, body, callback) => {
       callback(rst);
     })
     .catch(e => {
-      console.log("parsing failed", e);
+      console.log('parsing failed', e);
     });
 };
 
 const RequestPost = (url, body, callback) => {
   fetch(url, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json'
     },
     body: body
   })
@@ -40,7 +40,7 @@ const RequestPost = (url, body, callback) => {
         return response.json();
       }
       if (response.status === 401) {
-        alert("token不合法，或已过期！");
+        alert('token不合法，或已过期！');
         return;
       }
     })
@@ -48,8 +48,26 @@ const RequestPost = (url, body, callback) => {
       callback(rst);
     })
     .catch(e => {
-      console.log("parsing failed", e);
+      console.log('parsing failed', e);
     });
 };
 
-export { ReqPost, RequestPost };
+const RequestGet = (url, callback) => {
+  fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(response => {
+      return response.json();
+    })
+    .then(rst => {
+      callback(rst);
+    })
+    .catch(e => {
+      console.log('parsing failed', e);
+    });
+};
+
+export { ReqPost, RequestPost, RequestGet };
