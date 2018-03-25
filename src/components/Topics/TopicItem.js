@@ -11,16 +11,28 @@ class TopicItem extends Component {
     return (
       <div id={topic._id} className="topicitem">
         <div className="avatar">
-          <img src={topic.author.avatar_url} />
+          <img src={topic.author.avatar} />
         </div>
         <div className="topic-info">
-          <div className="topic-title"><a href="/topic/{topic._id}">{topic.title}</a></div>
+          <div className="topic-title">
+            <a href="/topic/{topic._id}">{topic.title}</a>
+          </div>
           <div className="topic-meta">
-            <a className="node" href={"/go/"+topic.group.id}>{topic.group.name}</a>
+            <a className="node" href={"/go/" + topic.group.id}>
+              {topic.group.name}
+            </a>
             <span>&nbsp;•&nbsp;</span>
             <a href="#">{topic.author.loginId}</a>
-            <span>&nbsp;•&nbsp;</span>
-            最后由&nbsp;<a href="#">{lastReply.author.loginId}</a>&nbsp;<Moment locale="zh-cn" fromNow>{lastReply.create_at}</Moment>回复
+            {lastReply && (
+              <div>
+                <span>&nbsp;•&nbsp;</span>
+                最后由&nbsp;<a href="#">
+                  {lastReply.author.loginId}
+                </a>&nbsp;<Moment locale="zh-cn" fromNow>
+                  {lastReply.create_at}
+                </Moment>回复
+              </div>
+            )}
           </div>
         </div>
         <div className="badge-reply-count">123</div>

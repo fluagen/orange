@@ -6,35 +6,11 @@ import "moment/locale/zh-cn";
 
 import About from "../Aside/About";
 import TopicItem from "./TopicItem";
+import {RequestGet} from '../Util/Request';
 
 import "../style/main.less";
 import "../style/container.less";
 import "../style/list-group.less";
-
-const data = () => {
-  return fetch("http://www.baidu.com")
-    .then(r => "bbb")
-    .then(rst => {
-      return rst;
-    });
-};
-
-const column = "ddd";
-
-// topics.push({
-//   title: '关于安卓抓包',
-//   author: {
-//     avatar_url: '',
-//     name: 'zhangsan'
-//   }
-// });
-// topics.push({
-//   title: 'js 党可以吐槽一下 Python 吗',
-//   author: {
-//     avatar_url: '',
-//     name: 'zhangsan'
-//   }
-// });
 
 class Topics extends Component {
   constructor(props) {
@@ -44,38 +20,30 @@ class Topics extends Component {
     };
   }
   componentDidMount() {
-    fetch("/api/topics")
-      .then(r => {return r.json()})
-      .then(rst => {
-        this.setState({ data: rst });
-        console.log(new Date() + rst);
+    let url = "http://localhost:3000/public/topics";
+    RequestGet(url, rst => {
+      let topics = rst.data.topics;
+      this.setState({
+        data: topics
       });
+    });
   }
   render() {
     var data = this.state.data;
     return (
-      <div className="container">
-        <Row gutter={16}>
-          <Col span={18}>
-            <div className="list-group">
-              <div className="list-group-item">aaa</div>
-              {data.map(item => {
-                return (
-                  <div className="list-group-item">
-                    <TopicItem
-                      key={item.topic._id}
-                      lastReply={item.last_reply}
-                      topic={item.topic}
-                    />
-                  </div>
-                );
-              })}
+      <div className="list-group">
+        <div className="list-group-item">aaadd</div>
+        {data.map(item => {
+          return (
+            <div className="list-group-item">
+              <TopicItem
+                key={item._id}
+                lastReply={item.lastReply}
+                topic={item}
+              />
             </div>
-          </Col>
-          <Col span={6}>
-            <About />
-          </Col>
-        </Row>
+          );
+        })}
       </div>
     );
   }
