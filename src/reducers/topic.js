@@ -17,5 +17,5 @@ export const getTopicList = handleActions(
       topics: action.payload.topics
     })
   },
-  topicsList
+  topicList
 );

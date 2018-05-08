@@ -1,11 +1,5 @@
-import {createActions} from 'redux-actions';
+import { createAction } from 'redux-actions';
+import { fetchTopicList } from '../apis/topic';
 
-const requestTopicList = createAction("requestTopicList");
-const receiveTopicList = createAction("receiveTopicList");
-
-export const getTopicList = () => (dispatch) => ({
-  dispatch(requestTopicList);
-  return fetch("http://localhost:3001/api/topics").then(response => response.json()).then(json => {
-    receiveTopicList({"topics": json.topics})
-  })
-});
+export const requestTopicList = createAction('requestTopicList');
+export const receiveTopicList = createAction('receiveTopicList');
