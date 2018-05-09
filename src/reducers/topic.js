@@ -14,7 +14,7 @@ export const getTopicList = handleActions(
     receiveTopicList: (state, action) => ({
       ...state,
       fetching: false,
-      topics: action.payload.topics
+      topics: action.payload
     })
   },
   topicList

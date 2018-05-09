@@ -5,7 +5,7 @@ import { getTopicList } from '../actions/topic';
 
 class App extends Component {
   componentDidMount() {
-    const { dispatch, selectedSubreddit } = this.props;
+    const { dispatch } = this.props;
     getTopicList(dispatch);
   }
 
@@ -14,10 +14,9 @@ class App extends Component {
     return (
       <div>
         {fetching && <h2>Loading...</h2>}
-        {topics.length > 0 &&
-          topics.map((topic, i) => {
-            <div id={i}>{topic}</div>;
-          })}
+        {topics &&
+          topics.length > 0 &&
+          topics.map((topic, i) => <div key={i}>{topic.title}</div>)}
       </div>
     );
   }
@@ -30,7 +29,8 @@ App.propTypes = {
 };
 
 const mapStateToProps = state => {
-  const { fetching, topics } = state;
+  const { getTopicList } = state;
+  const { fetching, topics } = getTopicList;
 
   return {
     fetching,
@@ -38,4 +38,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {})(App);
+export default connect(mapStateToProps)(App);
