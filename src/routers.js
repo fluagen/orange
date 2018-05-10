@@ -1,22 +1,22 @@
-import React, { Component } from "react";
-import { Switch, BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Header from "./components/Page/Header";
-import Footer from "./components/Page/Footer";
-import Home from "./containers/Home";
-import Topics from "./components/Topics/Topics";
-import Login from "./components/Login/Login";
-import Register from "./components/Login/Register";
-import TopicEditor from "./components/Topics/TopicEditor";
-import Topic from "./components/Topics/Topic";
+import React, { Component } from 'react';
+import { Switch, BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Header from './components/Page/Header';
+import Footer from './components/Page/Footer';
+import Home from './components/Page/Home';
+import Topics from './components/Topics/Topics';
+import Login from './components/Login/Login';
+import Register from './components/Login/Register';
+import TopicEditor from './components/Topics/TopicEditor';
+import Topic from './components/Topics/Topic';
 
 // import './mock/Topic';
 
-import "./components/style/main.less";
-import "./App.less";
+import './components/style/main.less';
+import './App.less';
 
-import styles from "./App.module.scss";
+import styles from './App.module.scss';
 
-const Page = () => (
+const page = () => (
   <div className={styles.main}>
     <div className={styles.header}>
       <Header />

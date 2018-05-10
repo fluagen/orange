@@ -11,7 +11,12 @@ class Header extends Component {
     return (
       <div className={styles.main}>
         <div className="container">
-          <nav className={classNames("navbar navbar-expand-lg navbar-light", styles.navbar)}>
+          <nav
+            className={classNames(
+              'navbar navbar-expand-lg navbar-light',
+              styles.navbar
+            )}
+          >
             <a className="navbar-brand" href="#">
               OC
             </a>
@@ -36,38 +41,6 @@ class Header extends Component {
         </div>
       </div>
     );
-    // return (
-    //   <div className="page-header">
-    //     <div className="container">
-    //       <Row>
-    //         <Col>
-    //           <div className="page-header-main">
-    //             <div className="page-header-brand">OC</div>
-    //             <div className="page-header-menu">
-    //               <Menu mode="horizontal">
-    //                 <Menu.Item>
-    //                   <Link to="/">社区</Link>
-    //                 </Menu.Item>
-    //                 <Menu.Item>
-    //                   <Link to="/topics">话题</Link>
-    //                 </Menu.Item>
-    //                 <Menu.Item>投票</Menu.Item>
-    //               </Menu>
-    //             </div>
-    //             <div className="page-header-btn">
-    //               <Button size="large">
-    //                 <Link to="/signup">注册</Link>
-    //               </Button>
-    //               <Button size="large">
-    //                 <Link to="/signin">登录</Link>
-    //               </Button>
-    //             </div>
-    //           </div>
-    //         </Col>
-    //       </Row>
-    //     </div>
-    //   </div>
-    // );
   }
 }
 
