@@ -6,5 +6,5 @@ export const receiveTopicList = createAction('receiveTopicList');
 
 export const getTopicList = dispatch => {
   dispatch(requestTopicList());
-  return fetchTopicList(json => dispatch(receiveTopicList(json.topics)));
+  return fetchTopicList(json => dispatch(receiveTopicList(json)));
 };

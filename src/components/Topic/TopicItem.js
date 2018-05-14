@@ -3,26 +3,30 @@ import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import 'moment/locale/zh-cn';
 
+import styles from './TopicItem.module.scss';
+
 const TopicItem = ({
   id,
   group_id,
   group_name,
   title,
-  avatar,
+  avatar_url,
   author_id,
   reply_author_id,
   last_reply_at
 }) => (
-  <div>
-    <div className="avatar">{avatar}</div>
-    <div>
+  <div className={styles.topicitem}>
+    <div className={styles.avatar}>
+      <img src={avatar_url} />
+    </div>
+    <div className={styles.info}>
       <div>
         <a href={'/topic/' + id}>{title}</a>
       </div>
       <div>
-        <a href={'/go/' + group_id}>{group_name}</a>
+        <a className={styles.node} href={'/go/' + group_id}>{group_name}</a>
         <span>&nbsp;•&nbsp;</span>
-        <a href="#">{author_id}</a>
+        <a className={styles.node} href="#">{author_id}</a>
         {reply_author_id && (
           <div>
             <span>&nbsp;•&nbsp;</span>
@@ -36,7 +40,7 @@ const TopicItem = ({
         )}
       </div>
     </div>
-    <div className="badge-reply-count">123</div>
+    <div className={styles.reply_count}>123</div>
   </div>
 );
 
@@ -45,7 +49,7 @@ TopicItem.propTypes = {
   group_id: PropTypes.string,
   group_name: PropTypes.string,
   title: PropTypes.string.isRequired,
-  avatar: PropTypes.string,
+  avatar_url: PropTypes.string,
   author_id: PropTypes.string,
   reply_author_id: PropTypes.string,
   last_reply_at: PropTypes.string
