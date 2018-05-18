@@ -2,31 +2,33 @@ import React, { Component } from 'react';
 import { List, Avatar } from 'antd';
 import PropTypes from 'prop-types';
 import TopicMeta from './TopicMeta';
+import Moment from 'react-moment';
+import 'moment/locale/zh-cn';
+
+import styles from './TopicList.module.scss';
 
 class TopicList extends Component {
   render() {
     const { topics } = this.props;
 
     return (
-      <div>
+      <div className={styles.topis_list}>
         <List
           itemLayout="horizontal"
           bordered
-          size="middle"
           dataSource={topics}
           renderItem={item => (
             <List.Item>
-              <List.Item.Meta
-                avatar={<Avatar src={item.avatar_url} />}
-                title={<a href="https://ant.design">{item.title}</a>}
-                description={
-                  <TopicMeta
-                    group_id={item.group_id}
-                    group_name={item.group_name}
-                    author_id={item.author_id}
-                  />
-                }
-              />
+              <div className={styles.item}>
+                <Avatar size="large" src={item.avatar_url} />
+                <div className={styles.title}>{item.title}</div>
+                <div className={styles.badge}>
+                  <div>121</div> |
+                  <Moment locale="zh-cn" fromNow>
+                    {item.last_reply_at}
+                  </Moment>
+                </div>
+              </div>
             </List.Item>
           )}
         />

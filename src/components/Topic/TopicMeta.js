@@ -26,7 +26,7 @@ const TopicMeta = ({
           fromNow
         >
           {last_reply_at}
-        </Moment>回复
+        </Moment>
       </div>
     )}
   </div>
