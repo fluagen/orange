@@ -1,16 +1,18 @@
 import React, { Component } from "react";
+import { List } from "antd";
 
-import '../style/list-group.less';
+const data = ["bbb"];
 
-class About extends Component {
-  render() {
-    return (
-      <div className="list-group">
-        <div className="list-group-item">关于</div>
-        <div className="list-group-item">bbb</div>
-      </div>
-    );
-  }
-}
+const About = () => (
+  <div style={{ marginBottom: 15 }}>
+    <List
+      itemLayout="horizontal"
+      header="关于"
+      bordered
+      dataSource={data}
+      renderItem={item => <List.Item>{item}</List.Item>}
+    />
+  </div>
+);
 
 export default About;

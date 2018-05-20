@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { List, Avatar } from 'antd';
 import PropTypes from 'prop-types';
-import TopicMeta from './TopicMeta';
 import Moment from 'react-moment';
 import 'moment/locale/zh-cn';
 
@@ -21,9 +20,10 @@ class TopicList extends Component {
             <List.Item>
               <div className={styles.item}>
                 <Avatar size="large" src={item.avatar_url} />
-                <div className={styles.title}>{item.title}</div>
+                <div className={styles.title}><a href="#">{item.title}</a></div>
                 <div className={styles.badge}>
-                  <div>121</div> |
+                  <span>121</span>
+                  <span className={styles.count_seperator}>|</span>
                   <Moment locale="zh-cn" fromNow>
                     {item.last_reply_at}
                   </Moment>

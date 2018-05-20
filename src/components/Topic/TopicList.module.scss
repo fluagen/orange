@@ -1,5 +1,4 @@
 .topis_list {
-
   .item {
     flex: 1;
     display: flex;
@@ -9,10 +8,17 @@
       font-size: 16px;
       line-height: 24px;
       flex: 1;
+
+      a{
+        color: #555;
+      }
     }
     .badge {
       display: flex;
       justify-content: flex-end;
+    }
+    .count_seperator {
+      margin: 0 4px;
     }
   }
 }

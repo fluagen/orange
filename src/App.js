@@ -6,7 +6,7 @@ import Home from "./containers/Home";
 import Topics from "./components/Topics/Topics";
 import Login from "./components/Login/Login";
 import Register from "./components/Login/Register";
-import TopicEditor from "./components/Topics/TopicEditor";
+import TopicEditor from "./components/Topic/TopicEditor";
 import Topic from "./components/Topics/Topic";
 
 // import './mock/Topic';
