@@ -1,41 +1,33 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { getTopicList } from '../actions/topic';
+import { Switch, BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Layout } from 'antd';
+import Navigation from '../components/Page/Navigation';
+import Home from './Home';
+// import '../stylesheets/main.scss';
+import styles from './App.module.scss';
 
-class App extends Component {
-  componentDidMount() {
-    const { dispatch } = this.props;
-    getTopicList(dispatch);
-  }
+const { Header, Footer, Sider, Content } = Layout;
 
-  render() {
-    const { fetching, topics } = this.props;
-    return (
-      <div>
-        {fetching && <h2>Loading...</h2>}
-        {topics &&
-          topics.length > 0 &&
-          topics.map((topic, i) => <div key={i}>{topic.title}</div>)}
-      </div>
-    );
-  }
-}
+const Page = () => (
+  <Layout className={styles.main}>
+    <Header className={styles.header}>
+      <Navigation />
+    </Header>
+    <Content className={styles.home}>
+      <Switch>
+        <Route path="/" exact component={Home} />
+      </Switch>
+    </Content>
+    <Footer className={styles.footer}>
+      <div className="container">Footer</div>
+    </Footer>
+  </Layout>
+);
 
-App.propTypes = {
-  topics: PropTypes.array.isRequired,
-  fetching: PropTypes.bool.isRequired,
-  dispatch: PropTypes.func.isRequired
-};
+const App = () => (
+  <Router>
+    <Page />
+  </Router>
+);
 
-const mapStateToProps = state => {
-  const { getTopicList } = state;
-  const { fetching, topics } = getTopicList;
-
-  return {
-    fetching,
-    topics
-  };
-};
-
-export default connect(mapStateToProps)(App);
+export default App;

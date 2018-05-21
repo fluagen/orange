@@ -1,18 +1,16 @@
-import React, { Component } from "react";
-import { List } from "antd";
+import React, { Component } from 'react';
+import { List } from 'antd';
 
-const data = ["bbb"];
+const data = ['bbb'];
 
 const About = () => (
-  <div style={{ marginBottom: 15 }}>
-    <List
-      itemLayout="horizontal"
-      header="关于"
-      bordered
-      dataSource={data}
-      renderItem={item => <List.Item>{item}</List.Item>}
-    />
-  </div>
+  <ul class="list-group">
+    <li class="list-group-item">Cras justo odio</li>
+    <li class="list-group-item">Dapibus ac facilisis in</li>
+    <li class="list-group-item">Morbi leo risus</li>
+    <li class="list-group-item">Porta ac consectetur ac</li>
+    <li class="list-group-item">Vestibulum at eros</li>
+  </ul>
 );
 
 export default About;

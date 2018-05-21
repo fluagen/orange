@@ -12,6 +12,7 @@ class TopicList extends Component {
 
     return (
       <div className={styles.topis_list}>
+
         <List
           itemLayout="horizontal"
           bordered

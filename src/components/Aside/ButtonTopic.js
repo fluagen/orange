@@ -1,8 +1,6 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import { List, Button } from "antd";
-
-import styles from "./ButtonTopic.module.scss";
+import { List, Button } from 'antd';
 
 // class ButtonTopic extends Component {
 //   render() {
@@ -18,26 +16,21 @@ import styles from "./ButtonTopic.module.scss";
 //   }
 // }
 
-const data = [""];
+const data = [''];
 const ButtonTopic = () => (
   <div>
-    <List
-      itemLayout="horizontal"
-      bordered
-      dataSource={data}
-      renderItem={item => (
-        <List.Item>
-          <Button
-            style={{ flex: 1 }}
-            type="primary"
-            ghost={true}
-            href="/topic/create"
-          >
-            发布话题
-          </Button>
-        </List.Item>
-      )}
-    />
+    <ul class="list-group">
+      <li class="list-group-item">
+        <Button
+          style={{ flex: 1 }}
+          type="primary"
+          ghost={true}
+          href="/topic/create"
+        >
+          发布话题
+        </Button>
+      </li>
+    </ul>
   </div>
 );
 
