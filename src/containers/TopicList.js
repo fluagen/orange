@@ -5,6 +5,9 @@ import { getTopicList } from '../actions/topic';
 import TopicList from '../components/Topic/TopicList';
 
 class TopicListContainer extends Component {
+  constructor(props){
+    super(props);
+  }
   componentDidMount() {
     const { dispatch } = this.props;
     getTopicList(dispatch);
@@ -28,8 +31,8 @@ TopicListContainer.propTypes = {
 };
 
 const mapStateToProps = state => {
-  const { getTopicList } = state;
-  const { fetching, topics } = getTopicList;
+  const { topicList } = state;
+  const { fetching, topics } = topicList;
 
   return {
     fetching,

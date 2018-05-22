@@ -1,11 +1,11 @@
-import { handleActions } from "redux-actions";
+import { handleActions } from 'redux-actions';
 
-const topicList = {
+const topicListState = {
   fetching: false,
   topics: []
 };
 
-export const getTopicList = handleActions(
+export const topicList = handleActions(
   {
     requestTopicList: (state, action) => ({
       ...state,
@@ -17,5 +17,25 @@ export const getTopicList = handleActions(
       topics: action.payload
     })
   },
-  topicList
+  topicListState
+);
+
+const topicState = {
+  fetching: false,
+  item: {}
+};
+
+export const topic = handleActions(
+  {
+    requestTopic: (state, action) => ({
+      ...state,
+      fetching: true
+    }),
+    receiveTopic: (state, action) => ({
+      ...state,
+      fetching: false,
+      item: action.payload
+    })
+  },
+  topicState
 );

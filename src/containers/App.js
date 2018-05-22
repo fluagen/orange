@@ -3,6 +3,7 @@ import { Switch, BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { Layout } from 'antd';
 import Navigation from '../components/Page/Navigation';
 import Home from './Home';
+import Topic from './Topic';
 // import '../stylesheets/main.scss';
 import styles from './App.module.scss';
 
@@ -16,6 +17,7 @@ const Page = () => (
     <Content className={styles.home}>
       <Switch>
         <Route path="/" exact component={Home} />
+        <Route path="/topic/:tid" component={Topic} />
       </Switch>
     </Content>
     <Footer className={styles.footer}>
