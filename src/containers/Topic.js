@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Row, Col } from 'antd';
 import { connect } from 'react-redux';
 import { getTopic } from '../actions/topic';
 import Topic from '../components/Topic/Topic';
+import About from '../components/Aside/About';
+import ButtonTopic from '../components/Aside/ButtonTopic';
 
 class TopicContainer extends Component {
   constructor(props) {
@@ -19,7 +22,19 @@ class TopicContainer extends Component {
     const { item, fetching } = this.props;
     return (
       <div>
-        <Topic title={item.title} t_content={item.t_content} />
+        <div className="container">
+          {fetching ? 'Loading' : (
+            <Row gutter={16}>
+              <Col span={18}>
+                <Topic item={item} />
+              </Col>
+              <Col span={6}>
+                <About />
+                <ButtonTopic />
+              </Col>
+            </Row>
+          )}
+        </div>
       </div>
     );
   }
