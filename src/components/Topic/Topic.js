@@ -1,25 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import TopicMeta from './TopicMeta';
+import TopicInfo from './TopicInfo';
+import Replies from './Replies';
+import ReplyEditor from './ReplyEditor';
+import styles from './Topic.module.scss';
 
-const Topic = ({
-  item
-}) => (
-  <div className="list-group">
-    <div className="list-group-item">
-      {item.title}
-      <TopicMeta
-      group_id={item.group_id}
-      group_name={item.group_name}
-      author_id={item.author_id}
-      visit_count={item.visit_count}/>
-    </div>
-    <div className="list-group-item">{item.t_content}</div>
+const Topic = ({ item, replies, ups }) => (
+  <div>
+    <TopicInfo data={item} />
+    <Replies data={replies} />
+    <ReplyEditor />
   </div>
 );
 
 Topic.propTypes = {
-  item: PropTypes.object.isRequired
+  item: PropTypes.object.isRequired,
+  replies: PropTypes.array.isRequired
 };
 
 export default Topic;

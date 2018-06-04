@@ -22,7 +22,9 @@ export const topicList = handleActions(
 
 const topicState = {
   fetching: false,
-  item: {}
+  item: {},
+  replies: [],
+  ups: []
 };
 
 export const topic = handleActions(
