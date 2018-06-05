@@ -7,7 +7,7 @@ import styles from './Topic.module.scss';
 
 const Topic = ({ item, replies, ups }) => (
   <div>
-    <TopicInfo data={item} />
+    <TopicInfo topic={item.topic} group={item.group} />
     <Replies data={replies} />
     <ReplyEditor />
   </div>

@@ -6,41 +6,42 @@ import 'moment/locale/zh-cn';
 
 import styles from './TopicInfo.module.scss';
 
-const TopicInfo = ({data}) => (
+const TopicInfo = ({topic, group}) => (
   <div className="list-group">
     <div className="list-group-item">
-      <h1 className={styles.title}>{data.title}</h1>
+      <h1 className={styles.title}>{topic.title}</h1>
       <div className={styles.meta}>
-        <a href={'/go/' + data.group_id}>
+        <a href={'/go/' + group.code}>
           <Icon type="folder" style={{ fontSize: 12, color: '#a9a7a7' }} />&nbsp;{
-            data.group_name
+            group.name
           }
         </a>
         <span>&nbsp;•&nbsp;</span>
         于<Moment locale="zh-cn" fromNow>
-          {data.create_at}
+          {topic.create_at}
         </Moment>
         <span>&nbsp;•&nbsp;</span>
-        <a href={'/user/' + data.author_id}>{data.author_id}</a>
-        {data.reply_author_id && (
+        <a href={'/user/' + topic.author_id}>{topic.author_id}</a>
+        {topic.reply_author_id && (
           <div>
-            最后回复由&nbsp;<a href={'/user/' + data.reply_author_id}>
-              {data.reply_author_id}
+            最后回复由&nbsp;<a href={'/user/' + topic.reply_author_id}>
+              {topic.reply_author_id}
             </a>&nbsp;
           </div>
         )}
         <span>&nbsp;•&nbsp;</span>
-        <span>{data.visit_count} 阅读</span>
+        <span>{topic.visit_count} 阅读</span>
       </div>
     </div>
     <div className="list-group-item">
-      <div className={styles.content}>{data.t_content}</div>
+      <div className={styles.content}>{topic.t_content}</div>
     </div>
   </div>
 );
 
 TopicInfo.propTypes = {
-  data: PropTypes.object.isRequired
+  topic: PropTypes.object.isRequired,
+  group: PropTypes.object.isRequired
 };
 
 export default TopicInfo;
