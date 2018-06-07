@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Row, Col, Input, Select, Button } from "antd";
+import React, { Component } from 'react';
+import { Row, Col, Input, Select, Button } from 'antd';
 import styles from './TopicEditor.module.scss';
 
 const { TextArea } = Input;
