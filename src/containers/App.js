@@ -4,6 +4,7 @@ import { Layout } from 'antd';
 import Navigation from '../components/Page/Navigation';
 import Home from './Home';
 import Topic from './Topic';
+import Signin from './Signin';
 // import '../stylesheets/main.scss';
 import styles from './App.module.scss';
 
@@ -17,6 +18,7 @@ const Page = () => (
     <Content className={styles.home}>
       <Switch>
         <Route path="/" exact component={Home} />
+        <Route path="/signin" component={Signin} />
         <Route path="/topic/:tid" component={Topic} />
       </Switch>
     </Content>

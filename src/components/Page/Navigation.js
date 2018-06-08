@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Menu } from 'antd';
+import { Menu, Button } from 'antd';
 import { Link } from 'react-router-dom';
 
 import styles from './Navigation.module.scss';
@@ -18,6 +18,9 @@ const Navigation = () => (
         </Menu.Item>
         <Menu.Item>投票</Menu.Item>
       </Menu>
+      <Button size="large">
+        <Link to="/signin">登录</Link>
+      </Button>
     </div>
   </div>
 );
