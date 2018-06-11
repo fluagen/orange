@@ -25,7 +25,7 @@ const reqPost = url => (token, body, callback) => {
     });
 };
 
-const requestPost = (url, body, callback) => {
+const requestPost = url => (body, callback) => {
   fetch(url, {
     method: 'POST',
     headers: {
@@ -50,7 +50,7 @@ const requestPost = (url, body, callback) => {
     });
 };
 
-const requestGet = (url, callback) => {
+const requestGet = url => callback => {
   fetch(url, {
     method: 'GET',
     headers: {

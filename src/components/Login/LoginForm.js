@@ -16,10 +16,13 @@ class LoginForm extends React.Component {
       if (err) {
         return;
       }
-      console.log(values);
       let body = JSON.stringify({
         loginid: values.userName,
         passwd: values.password
+      });
+
+      submitLogin(values.userName, values.passwd, (res) => {
+
       });
       RequestPost("http://localhost:3000/signin", body, rst => {
         let data = rst.data;
@@ -70,6 +73,11 @@ class LoginForm extends React.Component {
     );
   }
 }
+
+LoginForm.propTypes = {
+  submitLogin: PropTypes.func.isRequired
+};
+
 
 const WrappedLoginForm = Form.create()(LoginForm);
 
