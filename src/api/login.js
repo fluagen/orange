@@ -1,11 +1,11 @@
-import { reqPost } from '../util/request';
+import { requestPost } from "../util/request";
 
-const postSignin = requestPost('http://localhost:3001/signin');
+const signin = requestPost("http://localhost:3001/signin");
 
-export const sendReply = (loginid,passwd) => {
+export const requestLogin = (loginId, passwd, handler) => {
   let body = JSON.stringify({
-    loginid: loginid,
+    loginid: loginId,
     passwd: passwd
   });
-  postSignin(body, handler);
-};
+  signin(body, handler);
+}

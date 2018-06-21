@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 import { withRouter } from "react-router-dom";
-import { RequestPost } from "../Util/Request";
+import { requestLogin } from "../../api/login";
 
 import "./Login.less";
 
@@ -16,17 +16,10 @@ class LoginForm extends React.Component {
       if (err) {
         return;
       }
-      let body = JSON.stringify({
-        loginid: values.userName,
-        passwd: values.password
-      });
 
-      submitLogin(values.userName, values.passwd, (res) => {
-
-      });
-      RequestPost("http://localhost:3000/signin", body, rst => {
-        let data = rst.data;
-        localStorage.setItem("token", data.token);
+      requestLogin(values.userName, values.password, res => {
+        let data = res.data;
+        sessionStorage.setItem("token", data.token);
         this.props.history.push("/");
       });
     });
@@ -73,11 +66,6 @@ class LoginForm extends React.Component {
     );
   }
 }
-
-LoginForm.propTypes = {
-  submitLogin: PropTypes.func.isRequired
-};
-
 
 const WrappedLoginForm = Form.create()(LoginForm);
 
