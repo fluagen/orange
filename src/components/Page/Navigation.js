@@ -21,6 +21,9 @@ const Navigation = () => (
       <Button size="large">
         <Link to="/signin">登录</Link>
       </Button>
+      <Button size="large">
+        <Link to="/signin">登录</Link>
+      </Button>
     </div>
   </div>
 );

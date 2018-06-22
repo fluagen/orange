@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { Layout } from 'antd';
-import Navigation from '../components/Page/Navigation';
+import NavBar from '../components/Page/NavBar';
 import Home from './Home';
 import Topic from './Topic';
 import Signin from './Login';
@@ -13,7 +13,7 @@ const { Header, Footer, Sider, Content } = Layout;
 const Page = () => (
   <Layout className={styles.main}>
     <Header className={styles.header}>
-      <Navigation />
+      <NavBar />
     </Header>
     <Content className={styles.home}>
       <Switch>
