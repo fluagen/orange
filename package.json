@@ -5,6 +5,8 @@
   "dependencies": {
     "antd": "^3.5.2",
     "classnames": "^2.2.5",
+    "jsonwebtoken": "^8.3.0",
+    "jwt-decode": "^2.2.0",
     "markdown-it": "^8.4.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

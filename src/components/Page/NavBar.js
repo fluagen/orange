@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { Menu, Button, Avatar } from 'antd';
 import { Link } from 'react-router-dom';
+import UserNav from './UserNav';
+import Auth from '../../util/Auth';
 
 import styles from './NavBar.module.scss';
 
@@ -11,27 +13,23 @@ const BtnGroup = () => (
       <Link to="/signin">登录</Link>
     </Button>
     <Button size="large">
-      <Link to="/signup">登录</Link>
+      <Link to="/signup">注册</Link>
     </Button>
   </div>
 );
 
-const UserMenu = ({ user }) => (
+const UserMenu = ({payload}) => (
   <div>
-    <Avatar size="large" src={user.avatar_url} />
+    <span>{payload.userid}</span>
   </div>
 );
 
 class NavBar extends Component {
   constructor(props) {
     super(props);
-    const token = sessionStorage.getItem("token");
-  }
-
-  componentDidMount() {
-
 
   }
+
 
   render() {
     return (
@@ -47,7 +45,7 @@ class NavBar extends Component {
             </Menu.Item>
             <Menu.Item>投票</Menu.Item>
           </Menu>
-          <BtnGroup />
+          {Auth.isAuthenticated() ? <UserNav /> : <BtnGroup />}
         </div>
       </div>
     );

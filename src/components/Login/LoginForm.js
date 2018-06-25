@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 import { withRouter } from "react-router-dom";
 import { requestLogin } from "../../api/login";
-
-import "./Login.less";
+import Auth from '../../util/Auth';
 
 import styles from "./LoginForm.module.scss";
 
@@ -19,7 +18,8 @@ class LoginForm extends React.Component {
 
       requestLogin(values.userName, values.password, res => {
         let data = res.data;
-        sessionStorage.setItem("token", data.token);
+        // sessionStorage.setItem("token", data.token);
+        Auth.authenticateUser(data.token);
         this.props.history.push("/");
       });
     });
