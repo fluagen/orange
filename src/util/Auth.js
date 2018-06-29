@@ -7,7 +7,7 @@ class Auth {
    * @param {string} token
    */
   static authenticateUser(token) {
-    localStorage.setItem('token', token);
+    sessionStorage.setItem('token', token);
   }
 
   /**
@@ -16,7 +16,7 @@ class Auth {
    * @returns {boolean}
    */
   static isAuthenticated() {
-    return localStorage.getItem('token') !== null;
+    return sessionStorage.getItem('token') !== null;
   }
 
   /**
@@ -25,11 +25,11 @@ class Auth {
    * @returns {string}
    */
   static getToken() {
-    return localStorage.getItem('token');
+    return sessionStorage.getItem('token');
   }
 
   static getPayload() {
-    let token = localStorage.getItem('token');
+    let token = sessionStorage.getItem('token');
     if (!token) {
       return null;
     }

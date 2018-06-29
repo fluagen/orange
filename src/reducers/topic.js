@@ -21,13 +21,7 @@ export const topicList = handleActions(
 );
 
 const topicState = {
-  fetching: false,
-  item: {
-    topic: {},
-    group: {}
-  },
-  replies: [],
-  ups: []
+  data: {}
 };
 
 export const topic = handleActions(
@@ -39,7 +33,7 @@ export const topic = handleActions(
     receiveTopic: (state, action) => ({
       ...state,
       fetching: false,
-      item: action.payload
+      data: action.payload
     })
   },
   topicState
