@@ -38,11 +38,11 @@ import "moment/locale/zh-cn";
 
 class TopicList extends Component {
   render() {
-    const { topics } = this.props;
+    const { items } = this.props;
 
     return (
       <div className="list-group">
-        {topics.map((item, i) => (
+        {items.map((item, i) => (
           <div key={i} className="list-group-item">
             <TopicItem
               avatar_url={item.avatar_url}
@@ -58,7 +58,7 @@ class TopicList extends Component {
 }
 
 TopicList.propTypes = {
-  topics: PropTypes.array.isRequired
+  items: PropTypes.array.isRequired
 };
 
 export default TopicList;

@@ -1,4 +1,4 @@
-export const fetchTopicList = handler =>
+export const fetchTopics = handler =>
   fetch('http://localhost:3001/public/api/topics')
     .then(res => res.json())
     .then(json => {

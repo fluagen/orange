@@ -2,16 +2,16 @@ import { handleActions } from 'redux-actions';
 
 const initState = {
   fetching: false,
-  data: {}
+  data: []
 };
 
-export const topic = handleActions(
+export const topics = handleActions(
   {
-    requestTopic: (state, action) => ({
+    requestTopics: (state, action) => ({
       ...state,
       fetching: true
     }),
-    receiveTopic: (state, action) => ({
+    receiveTopics: (state, action) => ({
       ...state,
       fetching: false,
       data: action.payload

@@ -6,14 +6,14 @@ import ButtonTopic from '../components/Aside/ButtonTopic';
 
 import styles from './Home.module.scss';
 
-import TopicList from './TopicList';
+import Topics from './Topics';
 
 const Home = () => (
   <div className={styles.main}>
     <div className="container">
       <Row gutter={16}>
         <Col span={18}>
-          <TopicList />
+          <Topics />
         </Col>
         <Col span={6}>
           <About />
