@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Avatar } from "antd";
+import { Link } from 'react-router-dom';
 import Moment from "react-moment";
 import "moment/locale/zh-cn";
 
@@ -17,7 +18,7 @@ const TopicItem = ({
   <div className={styles.item}>
     <Avatar size="large" src={avatar_url} />
     <div className={styles.title}>
-      <a href={'/topic/'+id}>{title}</a>
+      <Link to={'/topic/'+id} > {title}</Link>
     </div>
     <div className={styles.badge}>
       <span>121</span>

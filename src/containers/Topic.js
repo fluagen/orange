@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col } from 'antd';
 import { connect } from 'react-redux';
-import { getTopic } from '../actions/topic';
+import { fetchTopic } from '../actions/topic';
 import Topic from '../components/Topic/Topic';
 import Replies from '../components/Topic/Replies';
 import ReplyEditor from '../components/Topic/ReplyEditor';
@@ -20,7 +20,11 @@ class TopicContainer extends Component {
   componentWillMount() {
     const { dispatch } = this.props;
     const tid = this.props.match.params.tid;
-    getTopic(tid, dispatch);
+    // fetchTopic(tid, dispatch);
+
+    // fetchTopic(tid, dispatch);
+
+    dispatch(fetchTopic(tid)());
   }
 
   handleReply(r_content) {
@@ -29,15 +33,12 @@ class TopicContainer extends Component {
 
     //TODO check token is null
 
-
     ReplyAPI.submitReply(token, tid, r_content, rst => {
-
       alert('aaa');
 
       this.props.history.push(this.props.match.url);
 
       alert('aaa2');
-
     });
   }
 
@@ -73,7 +74,11 @@ class TopicContainer extends Component {
                   last_reply={last_reply}
                 />
                 <Replies items={replies} />
-                {Auth.isAuthenticated ? <ReplyEditor handleReply= {this.handleReply} /> : <div />}
+                {Auth.isAuthenticated ? (
+                  <ReplyEditor handleReply={this.handleReply} />
+                ) : (
+                  <div />
+                )}
               </Col>
               <Col span={6}>
                 <About />

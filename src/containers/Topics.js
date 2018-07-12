@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getTopics } from '../actions/topics';
+import { fetchTopics } from '../actions/topics';
 import TopicList from '../components/Topic/TopicList';
 
 class TopicsContainer extends Component {
@@ -11,7 +11,9 @@ class TopicsContainer extends Component {
   }
   componentDidMount() {
     const { dispatch } = this.props;
-    getTopics(dispatch);
+    // getTopics(dispatch);
+
+    dispatch(fetchTopics())
   }
 
   render() {
